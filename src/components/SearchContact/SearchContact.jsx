@@ -7,7 +7,7 @@ class SearchContact extends Component {
    
     handleChange = ({target}) => {
         const {value} = target;
-        this.props.searchInput(value)
+        this.props.searchInput(value);
         
     }
     
