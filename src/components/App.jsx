@@ -1,20 +1,17 @@
-import PropTypes from 'prop-types';
 import styles from './app.module.css'
 import { Component } from 'react';
 import ElementContact from './ElementContact/ElementContact';
 import SearchContact from './SearchContact/SearchContact';
 import FormContact from './FormContact/FormContact'
 
-
 class App extends Component {
-  
   state = {
     contacts: [],
     filter: ''
   }
 
   addContact = ({name, number, id}) => {
-      const searchName = this.state.contacts.map(({name}) => name);
+    const searchName = this.state.contacts.map(({name}) => name);
     
         if (searchName.includes(name)) {
           return alert(`${name} is already in contacts`);
@@ -35,14 +32,13 @@ class App extends Component {
         contacts: contacts.filter(item => item.id !== id)
       }
     })
-  }
-
+  };
 
   filterContacts = (value) => {
     this.setState({
       filter: value
     })
-  }
+  };
 
 
   getSearchContacts() {
@@ -53,7 +49,7 @@ class App extends Component {
      return nameValue.includes(filterValue);
     });
     return filtredContacts;
-  }
+  };
 
   render() {
 
@@ -69,9 +65,6 @@ class App extends Component {
       </div>
 
     )
-  }
-  
-
-}
+  }};
 
 export default App;

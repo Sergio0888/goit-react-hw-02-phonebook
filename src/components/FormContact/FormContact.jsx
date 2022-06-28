@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
 import styles from './formcontact.module.css';
@@ -15,11 +15,18 @@ class FormContact extends Component {
         const name = e.target.name.value;
         const number = e.target.number.value;
         this.props.onSubmit({name, number, id})
-    }
+
+        e.target.name.value = '';
+        e.target.number.value = '';
+        
+        return this.setState({
+          name: '',
+          number: ''
+        })
+    };
 
     render() {
         return (
-
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <label className={styles.label} htmlFor="">Name</label>
           <input
@@ -46,3 +53,7 @@ class FormContact extends Component {
 }
 
 export default FormContact;
+
+FormContact.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};

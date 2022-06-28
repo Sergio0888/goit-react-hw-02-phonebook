@@ -1,4 +1,5 @@
 import styles from './elementcontact.module.css';
+import PropTypes from 'prop-types';
 
 
 const ElementContact = ({contacts, removeContact}) => {
@@ -21,3 +22,8 @@ const ElementContact = ({contacts, removeContact}) => {
 }
 
 export default ElementContact;
+
+ElementContact.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  removeContact: PropTypes.func.isRequired
+}

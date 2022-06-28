@@ -1,17 +1,14 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './searchcontact.module.css';
 
 
 class SearchContact extends Component {
-   
-   
     handleChange = ({target}) => {
         const {value} = target;
         this.props.searchInput(value);
-        
+
     }
-    
-    
     render() {
         return (
             <div className={styles.box}>
@@ -22,11 +19,10 @@ class SearchContact extends Component {
                 />
             </div>
         )
-}
-
-    
-    
-}
+}}
        
-
 export default SearchContact;
+
+SearchContact.propTypes = {
+    searchInput: PropTypes.func.isRequired
+  };
