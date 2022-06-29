@@ -2,7 +2,7 @@ import styles from './elementcontact.module.css';
 import PropTypes from 'prop-types';
 
 
-const ElementContact = ({contacts, removeContact}) => {
+const ContactList = ({contacts, removeContact}) => {
 
     const elements = contacts.map(({name,number, id}) => {
       return (
@@ -21,9 +21,9 @@ const ElementContact = ({contacts, removeContact}) => {
     )
 }
 
-export default ElementContact;
+export default ContactList;
 
-ElementContact.propTypes = {
-  contacts: PropTypes.array.isRequired,
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeContact: PropTypes.func.isRequired
 }

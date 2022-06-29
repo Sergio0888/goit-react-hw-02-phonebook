@@ -1,28 +1,23 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './searchcontact.module.css';
 
 
-class SearchContact extends Component {
-    handleChange = ({target}) => {
-        const {value} = target;
-        this.props.searchInput(value);
 
-    }
-    render() {
-        return (
-            <div className={styles.box}>
-                <p className={styles.text}>Find contacts by name</p>
-                <input 
-                type="text"
-                onChange={this.handleChange}
-                />
-            </div>
-        )
-}}
+const Filter = ({searchInput}) => {
+
+    return (
+        <div className={styles.box}>
+            <p className={styles.text}>Find contacts by name</p>
+            <input 
+            type="text"
+            onChange={searchInput}
+            />
+        </div>
+    )
+}
        
-export default SearchContact;
+export default Filter;
 
-SearchContact.propTypes = {
-    searchInput: PropTypes.func.isRequired
+Filter.propTypes = {
+    searchInput : PropTypes.func.isRequired
   };

@@ -1,22 +1,30 @@
 import styles from './app.module.css'
 import { Component } from 'react';
-import ElementContact from './ElementContact/ElementContact';
-import SearchContact from './SearchContact/SearchContact';
-import FormContact from './FormContact/FormContact'
+import ContactList from './ElementContact/ElementContact';
+import Filter from './SearchContact/SearchContact';
+import ContactForm from './FormContact/FormContact';
+import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+    ],
     filter: ''
   }
 
-  addContact = ({name, number, id}) => {
+  addContact = (props) => {
+    const { name, number } = props;
     const searchName = this.state.contacts.map(({name}) => name);
     
         if (searchName.includes(name)) {
           return alert(`${name} is already in contacts`);
         }
-    
+        
+        const id = nanoid();
         const newContact = {name, number, id};
     
        return this.setState({
@@ -40,9 +48,17 @@ class App extends Component {
     })
   };
 
+  handleChange = ({target}) => {
+    const {value} = target;
+    this.filterContacts(value);
+  };
+
 
   getSearchContacts() {
     const {contacts, filter} = this.state;
+    if (filter === '') {
+      return contacts
+    }
     const filterValue = filter.toLowerCase();
     const filtredContacts = contacts.filter(({name}) => {
       const nameValue = name.toLowerCase();
@@ -58,10 +74,10 @@ class App extends Component {
     return (
       <div className={styles.box}>
         <h1 className={styles.title}>Phonebook</h1>
-        <FormContact onSubmit={this.addContact} />
+        <ContactForm onSubmit={this.addContact} />
         <h2 className={styles.title}>Contacts</h2>
-        <SearchContact searchInput={this.filterContacts} />
-        <ElementContact  contacts={contactsArr} removeContact={this.removeContact}/>
+        <Filter searchInput={this.handleChange} />
+        <ContactList  contacts={contactsArr} removeContact={this.removeContact}/>
       </div>
 
     )
